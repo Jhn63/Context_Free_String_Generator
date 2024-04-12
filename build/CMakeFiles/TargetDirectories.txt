@@ -1,0 +1,3 @@
+C:/Users/Melissa/Documents/UFPB/Periodo_6/Linguaguens Formais e Computabilidade/projeto final/build/CMakeFiles/GFString_Generator.dir
+C:/Users/Melissa/Documents/UFPB/Periodo_6/Linguaguens Formais e Computabilidade/projeto final/build/CMakeFiles/edit_cache.dir
+C:/Users/Melissa/Documents/UFPB/Periodo_6/Linguaguens Formais e Computabilidade/projeto final/build/CMakeFiles/rebuild_cache.dir
