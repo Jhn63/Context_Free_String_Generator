@@ -3,16 +3,16 @@
 /* As produções são representadas pelo par <char, string> representando o
 ** lado direito e esquerdo respectivamente, o objeto recebe um vector de produções
 ** com uma UNICA produção por posição no vetor */
-Generator::Generator(const std::vector<std::pair<char, std::string>> &prod_list) : productions(prod_list) {
+Generator::Generator(std::vector<std::pair<char, std::string>> *prod_list) : productions(prod_list) {
     root = new ExpansionTree("S", nullptr);
     queue_deriv.push(root);
-    tracker.insert("S");
 }
 
 /* Deleta toda a árvore e esvazia
 ** a fila para não manter referências */
 Generator::~Generator() {
     delete root;
+    delete productions;
     while (!queue_deriv.empty()) {
         queue_deriv.pop();
     }
@@ -50,9 +50,11 @@ void Generator::fast_mode(const int iter) {
 /* Função para subir na árvore
 ** apartir do nó de entrada concatena todas as strings até a raiz*/
 std::string Generator::back_tracking(ExpansionTree &node) {
-    std::string concat = "";
     ExpansionTree *aux = &node;
+    std::string concat = node.string;
+    if (concat.empty()) concat = "epsilon";
 
+    aux = aux->father;
     while (aux != nullptr) {
         concat = aux->string + " -> " + concat;
         aux = aux->father;
@@ -79,30 +81,18 @@ std::vector<ExpansionTree*> *Generator::expand_node(ExpansionTree &node) {
     
     if (sym != 0) {
         auto *result = new std::vector<ExpansionTree*>();
-        for (auto prod : productions) {
+        for (auto prod : *productions) {
 
             if (prod.first == sym) {
 
                 std::string copy = node.string;
                 copy.replace(index, 1, prod.second);
-                
-                if ( !already_exists(copy) ) {
-                    ExpansionTree *e = new ExpansionTree(copy, &node);
-                    result->push_back(e);
-                }
+
+                ExpansionTree *e = new ExpansionTree(copy, &node);
+                result->push_back(e);
             }
         }
         return result;
     }
     return nullptr;
-}
-
-/* Verifica se uma derivação já apareceu */
-bool Generator::already_exists(std::string &str) {
-    auto it = tracker.find(str);
-    if (it != tracker.end()) {
-        return true;
-    }
-    tracker.insert(str);
-    return false;
 }

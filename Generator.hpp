@@ -10,17 +10,14 @@
 class Generator {
 private:
     ExpansionTree *root;
-    
-    std::vector<std::pair<char, std::string>> productions;
-    std::unordered_set<std::string> tracker;
     std::queue<ExpansionTree*> queue_deriv;
+    std::vector<std::pair<char, std::string>> *productions;
 
-    bool already_exists(std::string &str);
     std::string back_tracking(ExpansionTree &node);
     std::vector<ExpansionTree*> *expand_node(ExpansionTree &node); 
 
 public:
-    Generator(const std::vector<std::pair<char, std::string>> &prod_list);
+    Generator(std::vector<std::pair<char, std::string>> *prod_list);
     ~Generator();
 
     void fast_mode(const int iter);

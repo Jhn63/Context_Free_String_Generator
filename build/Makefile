@@ -116,24 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named GFString_Generator
+# Target rules for targets named CFString_Generator
 
 # Build rule for target.
-GFString_Generator: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 GFString_Generator
-.PHONY : GFString_Generator
+CFString_Generator: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CFString_Generator
+.PHONY : CFString_Generator
 
 # fast build rule for target.
-GFString_Generator/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/build
-.PHONY : GFString_Generator/fast
+CFString_Generator/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/build
+.PHONY : CFString_Generator/fast
 
 ExpansionTree.obj: ExpansionTree.cpp.obj
 .PHONY : ExpansionTree.obj
 
 # target to build an object file
 ExpansionTree.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/ExpansionTree.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/ExpansionTree.cpp.obj
 .PHONY : ExpansionTree.cpp.obj
 
 ExpansionTree.i: ExpansionTree.cpp.i
@@ -141,7 +141,7 @@ ExpansionTree.i: ExpansionTree.cpp.i
 
 # target to preprocess a source file
 ExpansionTree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/ExpansionTree.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/ExpansionTree.cpp.i
 .PHONY : ExpansionTree.cpp.i
 
 ExpansionTree.s: ExpansionTree.cpp.s
@@ -149,15 +149,39 @@ ExpansionTree.s: ExpansionTree.cpp.s
 
 # target to generate assembly for a file
 ExpansionTree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/ExpansionTree.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/ExpansionTree.cpp.s
 .PHONY : ExpansionTree.cpp.s
+
+FileHandler.obj: FileHandler.cpp.obj
+.PHONY : FileHandler.obj
+
+# target to build an object file
+FileHandler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/FileHandler.cpp.obj
+.PHONY : FileHandler.cpp.obj
+
+FileHandler.i: FileHandler.cpp.i
+.PHONY : FileHandler.i
+
+# target to preprocess a source file
+FileHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/FileHandler.cpp.i
+.PHONY : FileHandler.cpp.i
+
+FileHandler.s: FileHandler.cpp.s
+.PHONY : FileHandler.s
+
+# target to generate assembly for a file
+FileHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/FileHandler.cpp.s
+.PHONY : FileHandler.cpp.s
 
 Generator.obj: Generator.cpp.obj
 .PHONY : Generator.obj
 
 # target to build an object file
 Generator.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/Generator.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/Generator.cpp.obj
 .PHONY : Generator.cpp.obj
 
 Generator.i: Generator.cpp.i
@@ -165,7 +189,7 @@ Generator.i: Generator.cpp.i
 
 # target to preprocess a source file
 Generator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/Generator.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/Generator.cpp.i
 .PHONY : Generator.cpp.i
 
 Generator.s: Generator.cpp.s
@@ -173,7 +197,7 @@ Generator.s: Generator.cpp.s
 
 # target to generate assembly for a file
 Generator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/Generator.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/Generator.cpp.s
 .PHONY : Generator.cpp.s
 
 main.obj: main.cpp.obj
@@ -181,7 +205,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -189,7 +213,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -197,7 +221,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GFString_Generator.dir\build.make CMakeFiles/GFString_Generator.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CFString_Generator.dir\build.make CMakeFiles/CFString_Generator.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -208,10 +232,13 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... GFString_Generator
+	@echo ... CFString_Generator
 	@echo ... ExpansionTree.obj
 	@echo ... ExpansionTree.i
 	@echo ... ExpansionTree.s
+	@echo ... FileHandler.obj
+	@echo ... FileHandler.i
+	@echo ... FileHandler.s
 	@echo ... Generator.obj
 	@echo ... Generator.i
 	@echo ... Generator.s
