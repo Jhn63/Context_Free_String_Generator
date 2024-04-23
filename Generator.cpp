@@ -18,6 +18,49 @@ Generator::~Generator() {
     }
 }
 
+void Generator::detail_mode() {
+    auto *root_l = new ExpansionTree("S", nullptr);
+    auto *current = root_l;
+    
+    while (true) {
+        int index = hasupper(current->string);
+        if (index < 0) { break; }
+
+        std::cout << "\nCadeia: " << current->string << std::endl;
+        std::cout << "Producoes: ";
+        std::vector<std::string> options;
+        char symbol = current->string[index];
+        for (auto prod : *productions) {
+            if (symbol == prod.first) {
+                options.push_back(prod.second);
+                std::cout << "[" << prod.second << "] ";
+            }
+        }
+        std::cout << std::endl;
+        std::cout << ">> ";
+
+        int op;
+        std::cin >> op;
+        if (op <= 0 || op > options.size()) { 
+            std::cout << std::endl << "\nENTRADA INVALIDA\n" << std::endl;
+            continue;
+        }
+
+        std::string copy = current->string;
+        copy.replace(index, 1, options[op-1]);
+        auto *node = new ExpansionTree(copy,current);
+        auto *vect = new std::vector<ExpansionTree*>;
+
+        vect->push_back(node);
+        current->push_nodes(vect);
+        current = node;
+    }
+    std::cout << std::endl << "\nCadeia: " << current->string << std::endl;
+    std::cout << "Caminho de derivacao: ";
+    std::cout << back_tracking(*current) << std::endl << std::endl;
+    delete root_l;
+}
+
 /* No modo rápido o usuário informa quantas cadeias ele quer produzir.
 ** A função utiliza uma fila para saber as cadeias que devem ser derivadas,
 ** ao chamar a função expand_node() se o retorno for um ponteiro nulo quer dizer
@@ -26,7 +69,6 @@ Generator::~Generator() {
 ** Por outro lado se a condicional if for aceita, um vetor com as possiveis derivações
 ** é criado e passado como "proximos nós" do nó atual */
 void Generator::fast_mode(const int iter) { 
-
     for (int i = 0; i < iter && !queue_deriv.empty(); ) {
         ExpansionTree *current = queue_deriv.front();
         auto *nodes = expand_node(*current);
@@ -62,6 +104,17 @@ std::string Generator::back_tracking(ExpansionTree &node) {
     return concat;
 }
 
+int Generator::hasupper(std::string &str) {
+    int index = 0;
+    for (char c : str) {
+        if (std::isupper(c)) {
+            return index;
+        }
+        index++;
+    }
+    return -1;
+}
+
 
 /* Funçao para derivar o simbolo não-terminal mais a esquerda
 ** Primeiro verifica se existe algum simbolo não-terminal e seleciona
@@ -69,17 +122,9 @@ std::string Generator::back_tracking(ExpansionTree &node) {
 ** as possiveis derivações para aquele simbolo não-terminal, por outro lado
 ** se não houver simbolos não-terminais a função retorna um nullptr */
 std::vector<ExpansionTree*> *Generator::expand_node(ExpansionTree &node) {
-    char sym = 0;
-    int index = 0;
-    for (char c : node.string) {
-        if (std::isupper(c)) {
-            sym = c;
-            break;
-        }
-        index++;
-    }
-    
-    if (sym != 0) {
+    int index = hasupper(node.string);
+    if (index >= 0) {
+        char sym = node.string[index];
         auto *result = new std::vector<ExpansionTree*>();
         for (auto prod : *productions) {
 

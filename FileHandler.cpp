@@ -73,7 +73,7 @@ std::vector<std::pair<char, std::string>>* FileHandler::process_grammar(std::ifs
 
     while(std::getline(stream,line)) {
         auto *tokens = tokenize(line, ':');
-
+        //falta verificação
         const char *right = (*tokens)[0].c_str();
         std::string left = (*tokens)[1].erase(0,1);
         if (left == "epsilon") left = "";

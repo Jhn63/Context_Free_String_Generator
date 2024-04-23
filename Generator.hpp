@@ -12,7 +12,8 @@ private:
     ExpansionTree *root;
     std::queue<ExpansionTree*> queue_deriv;
     std::vector<std::pair<char, std::string>> *productions;
-
+    
+    int hasupper(std::string &str);
     std::string back_tracking(ExpansionTree &node);
     std::vector<ExpansionTree*> *expand_node(ExpansionTree &node); 
 
@@ -21,4 +22,5 @@ public:
     ~Generator();
 
     void fast_mode(const int iter);
+    void detail_mode();
 };
