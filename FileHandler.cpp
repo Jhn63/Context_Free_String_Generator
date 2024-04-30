@@ -23,22 +23,24 @@ Generator* FileHandler::read(char *path) {
     return new Generator(productions);
 }
 
+/*Verifica se as variaveis estão em maiusculo*/
 void FileHandler::process_line1(std::string &line) {
     std::string trash = "variaveis:";
     size_t pos = line.find(trash);
     assert(pos != 0, "Formato do arquivo nao suportavel");
     
     line.erase(pos,trash.length());
-    auto tonkes = tokenize(line, ',');
-    for (auto t : *tonkes) {   
+    auto tokens = tokenize(line, ',');
+    for (auto t : *tokens) {   
         assert(t.length() > 1, "Variavel nao permitida: " + t);
 
         const char *c = t.c_str();
         assert(!isupper(*c), "Variavel em minusculo nao eh permitida: " + t);
     }
-    delete tonkes;
+    delete tokens;
 }
 
+/*Verifica se a variavel inicial é S*/
 void FileHandler::process_line2(std::string &line) {
     std::string trash = "inicial:";
     size_t pos = line.find(trash);
@@ -48,22 +50,24 @@ void FileHandler::process_line2(std::string &line) {
     assert(line != "S", "Variavel inicial precisa ser S");
 }
 
+/*verifica se os terminais são Não-maiusculos*/
 void FileHandler::process_line3(std::string &line) {
     std::string trash = "terminais:";
     size_t pos = line.find(trash);
     assert(pos != 0, "Formato do arquivo nao suportavel");
     
     line.erase(pos,trash.length());
-    auto tonkes = tokenize(line, ',');
-    for (auto t : *tonkes) {   
+    auto tokens = tokenize(line, ',');
+    for (auto t : *tokens) {   
         assert(t.length() > 1, "Simbolo Terminal nao permitido: " + t);
 
         const char *c = t.c_str();
         assert(isupper(*c), "Simbolo Terminal em maiusculo nao eh permitido: " + t);
     }
-    delete tonkes;
+    delete tokens;
 }
 
+/*Converte as produções em um vetor de pares<variavel, produção>*/
 std::vector<std::pair<char, std::string>>* FileHandler::process_grammar(std::ifstream &stream) {
     auto *productions = new std::vector<std::pair<char, std::string>>();
 
@@ -85,6 +89,7 @@ std::vector<std::pair<char, std::string>>* FileHandler::process_grammar(std::ifs
     return productions;
 }
 
+/*Quebra uma string nos simbolos delimitados*/
 std::vector<std::string>* FileHandler::tokenize(std::string &str, char delimiter) {
     auto tokens = new std::vector<std::string>();
     
@@ -96,7 +101,7 @@ std::vector<std::string>* FileHandler::tokenize(std::string &str, char delimiter
     return tokens;
 }
 
-
+/*Imprime uma mensagem dada uma condição*/
 void FileHandler::assert(bool condition, std::string msg) {
     if (condition) {
         std::cerr << "ERRO: " << msg << std::endl;

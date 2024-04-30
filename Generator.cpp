@@ -28,12 +28,18 @@ void Generator::detail_mode() {
 
         std::cout << "\nCadeia: " << current->string << std::endl;
         std::cout << "Producoes: ";
+
         std::vector<std::string> options;
         char symbol = current->string[index];
+
         for (auto prod : *productions) {
+
             if (symbol == prod.first) {
                 options.push_back(prod.second);
-                std::cout << "[" << prod.second << "] ";
+
+                (prod.second.empty()) ?
+                    std::cout << "[epsilon] ":
+                    std::cout << "[" << prod.second << "] ";
             }
         }
         std::cout << std::endl;
@@ -48,11 +54,9 @@ void Generator::detail_mode() {
 
         std::string copy = current->string;
         copy.replace(index, 1, options[op-1]);
-        auto *node = new ExpansionTree(copy,current);
-        auto *vect = new std::vector<ExpansionTree*>;
 
-        vect->push_back(node);
-        current->push_nodes(vect);
+        auto *node = new ExpansionTree(copy,current);
+        current->push_nodes(new std::vector<ExpansionTree*>{node});
         current = node;
     }
     std::cout << std::endl << "\nCadeia: " << current->string << std::endl;
@@ -104,6 +108,8 @@ std::string Generator::back_tracking(ExpansionTree &node) {
     return concat;
 }
 
+/* Retorna o indice do primeiro caractere maiusculo
+** da string, -1 se não tiver*/
 int Generator::hasupper(std::string &str) {
     int index = 0;
     for (char c : str) {
