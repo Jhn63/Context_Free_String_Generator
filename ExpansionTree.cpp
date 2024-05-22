@@ -1,5 +1,6 @@
 #include "ExpansionTree.hpp"
 
+/*Cada nodulo é instanciado sem filhos*/
 ExpansionTree::ExpansionTree(std::string str, ExpansionTree *ftr) : string(str), father(ftr), next_node(nullptr) {}
 
 /* Ao deletar um nó, recursivamente todos demais nós
@@ -14,6 +15,7 @@ ExpansionTree::~ExpansionTree() {
     }
 }
 
+/*Recebe ferencia para os filhos da arvore*/
 void ExpansionTree::push_nodes(std::vector<ExpansionTree*> *nodes) {
     next_node = nodes;
 }
